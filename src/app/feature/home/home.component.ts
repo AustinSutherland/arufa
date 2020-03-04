@@ -1,6 +1,5 @@
 import { HomeService } from "./home.service";
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Observable } from "rxjs";
 
 @Component({
     selector: "app-home",
