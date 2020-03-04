@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="content">
+        <div class="logos">
+            <div class="logo logo--en">{{ "Arufa" }}</div>
+            <div class="logo logo--jp">{{ "アルファ" }}</div>
+        </div>
+        <div class="info">
+            <div class="info__item reviews">
+                <button nz-button [nzSize]="size" nzType="primary">
+                    {{ userInfo.pendingReviews }} Reviews
+                </button>
+            </div>
+            <div class="info__item lessons">
+                <button nz-button [nzSize]="size" nzType="danger">
+                    {{ userInfo.pendingLessons }} Lessons
+                </button>
+            </div>
+            <div class="info__item user">
+                <div class="user__name">{{ userInfo.username }}</div>
+                <i nz-icon [nzType]="'smile'" [nzTheme]="'twotone'"></i>
+            </div>
+        </div>
+    </div>
+</div>
