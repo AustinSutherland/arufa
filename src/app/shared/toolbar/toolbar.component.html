@@ -1,23 +1,47 @@
 <div class="container">
     <div class="content">
-        <div class="logos">
+        <div class="logos" (click)="onHomeClicked()">
             <div class="logo logo--en">{{ "Arufa" }}</div>
             <div class="logo logo--jp">{{ "アルファ" }}</div>
         </div>
         <div class="info">
             <div class="info__item reviews">
-                <button nz-button [nzSize]="size" nzType="primary">
-                    {{ userInfo.pendingReviews }} Reviews
+                <button nz-button nzType="dashed" (click)="toggleLang()">
+                    {{
+                        (translationService.translations$ | async)
+                            .language_toggle_label
+                    }}
                 </button>
             </div>
-            <div class="info__item lessons">
-                <button nz-button [nzSize]="size" nzType="danger">
-                    {{ userInfo.pendingLessons }} Lessons
-                </button>
-            </div>
-            <div class="info__item user">
-                <div class="user__name">{{ userInfo.username }}</div>
-                <i nz-icon [nzType]="'smile'" [nzTheme]="'twotone'"></i>
+            <div class="info">
+                <div class="info__item reviews">
+                    <button nz-button nzType="primary">
+                        {{
+                            (
+                                translationService.translations$ | async
+                            ).review_button.replace(
+                                "{0}",
+                                userInfo.pendingReviews
+                            )
+                        }}
+                    </button>
+                </div>
+                <div (click)="onLessonsClicked()" class="info__item lessons">
+                    <button nz-button nzType="danger">
+                        {{
+                            (
+                                translationService.translations$ | async
+                            ).lesson_button.replace(
+                                "{0}",
+                                userInfo.pendingReviews
+                            )
+                        }}
+                    </button>
+                </div>
+                <div class="info__item user">
+                    <div class="user__name">{{ userInfo.username }}</div>
+                    <i nz-icon [nzType]="'smile'" [nzTheme]="'twotone'"></i>
+                </div>
             </div>
         </div>
     </div>
