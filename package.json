@@ -29,6 +29,7 @@
         "rxjs": "~6.5.4",
         "tslib": "^1.9.0",
         "tslint-plugin-prettier": "^2.1.0",
+        "wanakana": "^4.0.2",
         "zone.js": "~0.9.1"
     },
     "devDependencies": {

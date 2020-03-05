@@ -6,6 +6,11 @@ export interface UserInfo {
     id: string;
 }
 
-export interface vocabItem {
+export interface VocabItem {
     id: string;
+    en_word: string;
+    jp_words: string[];
+    pronunciation: string;
+    definition: string;
+    examples: string[];
 }
