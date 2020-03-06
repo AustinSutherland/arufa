@@ -8,6 +8,8 @@ It its current state, it is mostly a demo, as all information is mocked and so n
 
 This application is written in Angular 8 with RxJS.
 
+![Alt text](src/assets/screenshots/1.PNG?raw=true)
+
 ### How to use
 
 The current demo only supports doing reviews. Click the review button to get started. Every word has a pronunciation stage and a meaning stage.
