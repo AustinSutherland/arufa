@@ -1,13 +1,21 @@
+## [0.0.3] - 7/3/2020
+
+### Added
+
+    - Move user info to shared component.
+    - Basic handling of correct/inccorect answers.
+    - Add concept of reviews.
+
 ## [0.0.2] - 5/3/2020
 
 ### Added
 
-    - Translations service
-    - Lessons module with basic review screen
+    - Translations service.
+    - Lessons module with basic review screen.
 
 ## [0.0.1] - 4/3/2020
 
 ### Added
 
-    - Basic infrastructure
-    - Added toolbar styling
+    - Basic infrastructure.
+    - Added toolbar styling.
