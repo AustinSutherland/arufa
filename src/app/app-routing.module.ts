@@ -12,8 +12,8 @@ const routes: Routes = [
         loadChildren: "./feature/home/home.module#HomeModule"
     },
     {
-        path: "lessons",
-        loadChildren: "./feature/lessons/lessons.module#LessonsModule"
+        path: "review",
+        loadChildren: "./feature/review/review.module#ReviewModule"
     }
 ];
 

@@ -14,7 +14,7 @@
                 </button>
             </div>
             <div class="info">
-                <div class="info__item reviews">
+                <div (click)="onReviewClicked()" class="info__item reviews">
                     <button nz-button nzType="primary">
                         {{
                             (
@@ -33,7 +33,7 @@
                                 translationService.translations$ | async
                             ).lesson_button.replace(
                                 "{0}",
-                                userInfo.pendingReviews
+                                userInfo.pendingLessons
                             )
                         }}
                     </button>

@@ -1,0 +1,14 @@
+<div class="info-container">
+    <nz-card *ngIf="!!vocabItem" class="card" [nzBordered]="false">
+        (This card is not implemented yet and would normally be hidden)
+
+        <div class="definition">
+            <span class="definition-text title"
+                >{{
+                    (translationService.translations$ | async).definition_label
+                }}:
+            </span>
+            <span class="definition-text">{{ vocabItem.definition }}</span>
+        </div>
+    </nz-card>
+</div>
