@@ -8,6 +8,7 @@ import {
     ChangeDetectionStrategy
 } from "@angular/core";
 import { UserInfo } from "src/app/core/models";
+import { NzMessageService } from "ng-zorro-antd";
 
 @Component({
     selector: "app-toolbar",
@@ -21,7 +22,8 @@ export class ToolbarComponent implements OnInit {
     constructor(
         public arfuaService: ArfuaService,
         public translationService: ArfuaTranslationService,
-        public router: Router
+        public router: Router,
+        private message: NzMessageService
     ) {}
 
     ngOnInit() {}
@@ -30,11 +32,15 @@ export class ToolbarComponent implements OnInit {
         this.translationService.toggleEnJP();
     }
 
-    public onLessonsClicked() {
-        this.router.navigate(["/lessons"]);
+    public onReviewClicked() {
+        this.router.navigate(["/review"]);
     }
 
     public onHomeClicked() {
         this.router.navigate(["/home"]);
+    }
+
+    public onLessonsClicked() {
+        this.message.info("Under Construction");
     }
 }

@@ -1,13 +1,19 @@
-<div class="container">
-    <div class="content">
-        <i nz-icon [nzType]="'smile'" [nzTheme]="'outline'"></i>
-        <div class="title">
-            {{ (translationService.translations$ | async).home_title_message }}
+<div class="card-container">
+    <nz-card class="card" [nzBordered]="false">
+        <div class="content">
+            <i nz-icon [nzType]="'smile'" [nzTheme]="'outline'"></i>
+            <div class="title">
+                {{
+                    (translationService.translations$ | async)
+                        .home_title_message
+                }}
+            </div>
+            <div class="body">
+                {{
+                    (translationService.translations$ | async)
+                        .home_content_message
+                }}
+            </div>
         </div>
-        <div class="body">
-            {{
-                (translationService.translations$ | async).home_content_message
-            }}
-        </div>
-    </div>
+    </nz-card>
 </div>

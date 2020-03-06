@@ -1,0 +1,33 @@
+<div class="label">
+    <ng-container *ngIf="mode === inputMode.meaning; else pronunciation">
+        {{
+            (translationService.translations$ | async)
+                .lesson_meaning_input_prompt
+        }}
+    </ng-container>
+
+    <ng-template #pronunciation>
+        {{
+            (translationService.translations$ | async)
+                .lesson_pronunciation_input_prompt
+        }}
+    </ng-template>
+</div>
+<div class="input-container">
+    <input
+        nz-input
+        [(ngModel)]="userInputValue"
+        [readonly]="
+            activeInputResult === inputResult.error ||
+            activeInputResult === inputResult.success
+        "
+        [ngClass]="{
+            warning: activeInputResult === inputResult.warning,
+            success: activeInputResult === inputResult.success,
+            error: activeInputResult === inputResult.error
+        }"
+        (input)="onInputChanged()"
+        (keyup.enter)="onSubmit()"
+        nzSize="large"
+    />
+</div>

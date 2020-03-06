@@ -1,0 +1,56 @@
+.label {
+    font-size: xx-large;
+    margin-bottom: 16px;
+}
+
+.input-container {
+    input {
+        font-size: 40px;
+        height: 70px;
+        padding-bottom: 8px;
+        transition: all 0.1s;
+
+        &.error {
+            border-color: red;
+            background-color: red;
+            color: white;
+            box-shadow: none;
+        }
+        &.warning {
+            animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
+        @keyframes shake {
+            10%,
+            90% {
+                transform: translate3d(-2px, 0, 0);
+            }
+
+            20%,
+            80% {
+                transform: translate3d(4px, 0, 0);
+            }
+
+            30%,
+            50%,
+            70% {
+                transform: translate3d(-8px, 0, 0);
+            }
+
+            40%,
+            60% {
+                transform: translate3d(8px, 0, 0);
+            }
+        }
+
+        &.success {
+            border-color: green;
+            background-color: green;
+            color: white;
+            box-shadow: none;
+        }
+    }
+}

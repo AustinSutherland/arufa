@@ -1,0 +1,23 @@
+.info-container {
+    background: #ececec;
+    padding: 30px;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    height: 100%;
+
+    .card {
+        width: 800px;
+        height: 400px;
+        border-radius: 10px;
+    }
+    .definition-text {
+        font-size: xx-large;
+        display: inline;
+    }
+    .title {
+        font-weight: bold;
+    }
+}
