@@ -41,6 +41,14 @@ export class ArfuaService {
                 "The test was really hard",
                 "I am making a test word for this program"
             ]
+        },
+        c: {
+            id: "c",
+            en_word: "Mitochondria",
+            jp_words: ["ミトコンドリア"],
+            pronunciations: ["ミトコンドリア"],
+            definition: "セルの原動力です",
+            examples: ["All this talk of mitochondria is making me hungry!"]
         }
     };
 
@@ -60,6 +68,14 @@ export class ArfuaService {
         },
         {
             vocabItemId: "b",
+            mode: InputMode.pronunciation
+        },
+        {
+            vocabItemId: "c",
+            mode: InputMode.meaning
+        },
+        {
+            vocabItemId: "c",
             mode: InputMode.pronunciation
         }
     ]);

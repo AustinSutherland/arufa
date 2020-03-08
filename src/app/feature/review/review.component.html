@@ -24,7 +24,10 @@
         </div>
 
         <div class="item-info">
-            <app-item-info [vocabItem]="activeVocabItem"></app-item-info>
+            <app-item-info-card
+                [isAvailable]="hasAnswered"
+                [vocabItem]="activeVocabItem"
+            ></app-item-info-card>
         </div>
     </div>
 </ng-container>

@@ -1,14 +1,31 @@
-<div class="info-container">
-    <nz-card *ngIf="!!vocabItem" class="card" [nzBordered]="false">
-        (This card is not implemented yet and would normally be hidden)
-
-        <div class="definition">
-            <span class="definition-text title"
-                >{{
-                    (translationService.translations$ | async).definition_label
-                }}:
-            </span>
-            <span class="definition-text">{{ vocabItem.definition }}</span>
-        </div>
-    </nz-card>
+<div class="title">
+    <div class="text-box text-box--title">{{ vocabItem.jp_words[0] }}</div>
+    <div
+        *ngFor="let alternative of vocabItem.jp_words.slice(1)"
+        class="text-box text-box--small alternative"
+    >
+        {{ alternative }}
+    </div>
 </div>
+
+<div class="definition">
+    <div class="text-box text-box--bold">
+        {{ (translationService.translations$ | async).definition_label }}:
+    </div>
+
+    <div class="text-box text-box">{{ vocabItem.definition }}</div>
+</div>
+
+<nz-card nzType="inner" nzTitle="例文">
+    <div class="examples">
+        <div
+            *ngFor="let example of vocabItem.examples"
+            class="text-box text-box--small example"
+        >
+            {{ example }}
+        </div>
+    </div>
+</nz-card>
+<nz-card nzType="inner" style="margin-top:16px;" nzTitle="Inner Card Title">
+    <a>Inner Card Content</a>
+</nz-card>

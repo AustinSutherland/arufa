@@ -20,7 +20,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
     public activeVocabItem: VocabItem;
     public activeMode: InputMode;
     public reviews: Review[];
-
+    public hasAnswered: boolean = false;
     public userInputValue: string = "";
 
     constructor(
@@ -47,6 +47,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
                 activeReview.vocabItemId
             );
             this.activeMode = activeReview.mode;
+            this.hasAnswered = false;
         }
     }
 
@@ -58,6 +59,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
             // shuffle
             this.reviews = this.reviews.sort(() => Math.random() - 0.5);
         }
+        this.hasAnswered = true;
     }
 
     public ngOnDestroy() {
