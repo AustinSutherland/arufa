@@ -10,7 +10,7 @@ export interface VocabItem {
     id: string;
     en_word: string;
     jp_words: string[];
-    pronunciations: string[];
+    pronunciation: string;
     definition: string;
     examples: string[];
 }

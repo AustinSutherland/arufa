@@ -1,23 +1,75 @@
-.info-container {
-    background: #ececec;
-    padding: 30px;
+.title {
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 18px;
+    padding-bottom: 5px;
+    font-weight: bold;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.definition {
+    font-size: large;
 
     display: flex;
     align-items: flex-start;
+    justify-content: flex-start;
+
+    .text-box {
+        padding-right: 8px;
+    }
+}
+
+.pronunciations {
+    display: flex;
     justify-content: center;
+}
 
-    height: 100%;
+.text-box {
+    &--title {
+        font-size: 38px;
+        padding-right: 5px;
+    }
 
-    .card {
-        width: 800px;
-        height: 400px;
-        border-radius: 10px;
-    }
-    .definition-text {
-        font-size: xx-large;
-        display: inline;
-    }
-    .title {
+    &--bold {
         font-weight: bold;
+        white-space: nowrap;
     }
+
+    &--small {
+        font-size: large;
+        color: gray;
+    }
+
+    &--centered {
+        text-align: center;
+    }
+
+    &.alternative {
+        padding-bottom: 4px;
+        padding-left: 6px;
+    }
+    &.example {
+        font-style: italic;
+        padding-bottom: 8px;
+    }
+    .pronunciation {
+        font-size: medium;
+        font-weight: 600;
+        display: flex;
+        flex-direction: column;
+
+        &__jp {
+            letter-spacing: 8px;
+        }
+
+        &__en {
+            letter-spacing: 8px;
+        }
+    }
+}
+
+nz-card {
+    margin-top: 18px;
 }

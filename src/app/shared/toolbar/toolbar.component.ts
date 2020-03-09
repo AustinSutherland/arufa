@@ -1,6 +1,6 @@
 import { Router } from "@angular/router";
 import { ArfuaTranslationService } from "./../../core/translation.service";
-import { ArfuaService } from "./../../core/arfua.service";
+import { ArufaService } from "./../../core/arfua.service";
 import {
     Component,
     OnInit,
@@ -17,10 +17,8 @@ import { NzMessageService } from "ng-zorro-antd";
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToolbarComponent implements OnInit {
-    @Input() public userInfo: UserInfo;
-
     constructor(
-        public arfuaService: ArfuaService,
+        public arufaService: ArufaService,
         public translationService: ArfuaTranslationService,
         public router: Router,
         private message: NzMessageService

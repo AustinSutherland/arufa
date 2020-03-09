@@ -8,7 +8,8 @@ import {
     ChangeDetectionStrategy,
     OnChanges,
     SimpleChanges,
-    ChangeDetectorRef
+    ChangeDetectorRef,
+    HostListener
 } from "@angular/core";
 import { toKana, isKana, toKatakana, toHiragana } from "wanakana";
 
@@ -35,6 +36,11 @@ export class UserInputComponent implements OnChanges {
     public inputMode = InputMode;
     public activeInputResult: InputResult = null;
     public inputResult = InputResult;
+
+    @HostListener("document:keyup.enter", ["$event"])
+    onKeyUp(event: KeyboardEvent) {
+        this.onSubmit();
+    }
 
     constructor(
         public translationService: ArfuaTranslationService,
@@ -110,7 +116,7 @@ export class UserInputComponent implements OnChanges {
         item: VocabItem
     ): boolean {
         const correctValues =
-            mode === InputMode.meaning ? item.jp_words : item.pronunciations;
+            mode === InputMode.meaning ? item.jp_words : item.pronunciation;
 
         if (correctValues.indexOf(answer.replace(" ", "")) === -1) {
             this.activeInputResult = InputResult.error;

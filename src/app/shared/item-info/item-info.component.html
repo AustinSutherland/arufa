@@ -1,14 +1,49 @@
-<div class="info-container">
-    <nz-card *ngIf="!!vocabItem" class="card" [nzBordered]="false">
-        (This card is not implemented yet and would normally be hidden)
-
-        <div class="definition">
-            <span class="definition-text title"
-                >{{
-                    (translationService.translations$ | async).definition_label
-                }}:
-            </span>
-            <span class="definition-text">{{ vocabItem.definition }}</span>
-        </div>
-    </nz-card>
+<div class="title">
+    <div class="text-box text-box--title">{{ vocabItem.jp_words[0] }}</div>
+    <div
+        *ngFor="let alternative of vocabItem.jp_words.slice(1)"
+        class="text-box text-box--small alternative"
+    >
+        {{ alternative }}
+    </div>
 </div>
+
+<div class="definition">
+    <div class="text-box text-box--bold">
+        {{ (translationService.translations$ | async).definition_label }}:
+    </div>
+
+    <div class="text-box text-box">{{ vocabItem.definition }}</div>
+</div>
+
+<nz-card
+    nzType="inner"
+    [nzTitle]="(translationService.translations$ | async).pronunciation_label"
+>
+    <div class="pronunciations">
+        <div class="text-box text-box--small text-box--centered pronunciation">
+            <div class="pronunciation pronunciation__jp">
+                {{ vocabItem.pronunciation }}
+            </div>
+            <div class="pronunciation pronunciation__en">
+                {{ vocabItem.en_word }}
+            </div>
+        </div>
+    </div>
+</nz-card>
+
+<nz-card
+    nzType="inner"
+    [nzTitle]="
+        (translationService.translations$ | async).example_sentences_label
+    "
+>
+    <div class="examples">
+        <div
+            *ngFor="let example of vocabItem.examples"
+            class="text-box text-box--small text-box--centered example"
+        >
+            {{ example }}
+        </div>
+    </div>
+</nz-card>

@@ -1,0 +1,43 @@
+.container {
+    background: #ececec;
+    padding: 30px;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    height: 100%;
+
+    .content {
+        width: 800px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .card-stub {
+        height: 60px;
+        background: white;
+        border-top: 2px solid #ececec;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        user-select: none;
+        cursor: pointer;
+
+        transition: all ease-in-out 100ms;
+
+        span {
+            padding-right: 8px;
+        }
+        i {
+            font-size: 24px;
+        }
+
+        &.disabled {
+            pointer-events: none;
+            color: lightgray;
+            background-color: #f8f8f8;
+        }
+    }
+}

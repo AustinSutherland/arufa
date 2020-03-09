@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="content">
+        <nz-card
+            @insertRemoveTrigger
+            *ngIf="!!vocabItem && isOpened"
+            class="card"
+            [nzBordered]="false"
+        >
+            <app-item-info [vocabItem]="vocabItem"></app-item-info>
+        </nz-card>
+        <div
+            class="card-stub"
+            [class.disabled]="!isAvailable"
+            (click)="toggleInfo()"
+        >
+            <span>
+                {{
+                    (translationService.translations$ | async).item_info_label
+                }}</span
+            >
+            <i
+                nz-icon
+                [nzType]="isOpened ? 'caret-up' : 'caret-down'"
+                nzTheme="outline"
+            ></i>
+        </div>
+    </div>
+</div>

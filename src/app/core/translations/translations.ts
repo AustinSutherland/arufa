@@ -8,6 +8,9 @@ export interface ArufaTranslationStrings {
     lesson_pronunciation_input_prompt: string;
     remaining_label: string;
     definition_label: string;
+    item_info_label: string;
+    pronunciation_label: string;
+    example_sentences_label: string;
 }
 
 // tslint:disable: max-line-length
@@ -18,10 +21,13 @@ export const en_translations: ArufaTranslationStrings = {
     home_title_message: "Welcome to Arufa",
     home_content_message:
         "This is a basic early-stage SRS application for learning english vocabulary. Click the lesson or review buttons above to get started!",
-    lesson_meaning_input_prompt: "Japanese Translation",
-    lesson_pronunciation_input_prompt: "Katakana Pronunciation",
+    lesson_meaning_input_prompt: "Japanese translation",
+    lesson_pronunciation_input_prompt: "Katakana pronunciation",
     remaining_label: "{0} Remaning",
-    definition_label: "Japanese Definition"
+    definition_label: "Japanese definition",
+    item_info_label: "Item information",
+    pronunciation_label: "Pronunciation",
+    example_sentences_label: "Example sentences"
 };
 
 export const jp_translations: ArufaTranslationStrings = {
@@ -34,5 +40,8 @@ export const jp_translations: ArufaTranslationStrings = {
     lesson_meaning_input_prompt: "英単語の意味",
     lesson_pronunciation_input_prompt: "カタカナの発音",
     remaining_label: "もう{0}件",
-    definition_label: "定義"
+    definition_label: "定義",
+    item_info_label: "アイテムデータ",
+    pronunciation_label: "発音",
+    example_sentences_label: "例文"
 };
