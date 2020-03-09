@@ -12,7 +12,7 @@ This application is written in Angular 8 with RxJS.
 Japanese mode
 
 ![Alt text](src/assets/screenshots/2.PNG?raw=true)
-Main Meni
+Main Menu
 
 ![Alt text](src/assets/screenshots/3.PNG?raw=true)
 In English
