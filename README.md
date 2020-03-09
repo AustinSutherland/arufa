@@ -9,6 +9,13 @@ It its current state, it is mostly a demo, as all information is mocked and so n
 This application is written in Angular 8 with RxJS.
 
 ![Alt text](src/assets/screenshots/1.PNG?raw=true)
+Japanese mode
+
+![Alt text](src/assets/screenshots/2.PNG?raw=true)
+Main Meni
+
+![Alt text](src/assets/screenshots/3.PNG?raw=true)
+In English
 
 ### How to use
 
@@ -18,7 +25,9 @@ In the pronunciation stage you type out text which is live converted to Katakana
 
 In the meaning stage, you must enter the Japanese translation, in plain form if it is a verb.
 
-Hit enter to submit your answer and the box will change color based on weather or not you are correct. Hit enter again to go to the next stage. Stages are randomly shuffled
+Hit enter to submit your answer and the box will change color based on weather or not you are correct. Hit enter again to go to the next stage. Stages are randomly shuffled.
+
+One you submit an answer, you can view the item information dropdown.
 
 ### How to install
 
@@ -44,4 +53,4 @@ Since this repository includes the already set up configurations, I recommend us
 ### Acknowledgements
 
 **wanakana** for the Japanese IME
-**ng-zorro-antd** for the angular ant-design components
+**ng-zorro-antd** for the angular ant-design components used in some areas

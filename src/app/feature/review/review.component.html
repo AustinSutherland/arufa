@@ -2,7 +2,7 @@
     <div class="review-container">
         <div class="word">
             <div class="word__content">
-                {{ activeVocabItem.en_word }}
+                {{ (activeVocabItem$ | async).en_word }}
             </div>
 
             <div class="word__remaining_label">
@@ -16,7 +16,7 @@
 
         <div class="user-input">
             <app-user-input
-                [vocabItem]="activeVocabItem"
+                [vocabItem]="activeVocabItem$ | async"
                 [mode]="activeMode"
                 (responseSubmitted)="onResponse($event)"
                 (nextItemRequested)="onNextItemRequested()"
@@ -26,12 +26,12 @@
         <div class="item-info">
             <app-item-info-card
                 [isAvailable]="hasAnswered"
-                [vocabItem]="activeVocabItem"
+                [vocabItem]="activeVocabItem$ | async"
             ></app-item-info-card>
         </div>
     </div>
 </ng-container>
 
 <ng-template #noReviews>
-    No More Reviews, TODO: Completion Screen
+    <div class="complete">You have completed the demo! Work in progress...</div>
 </ng-template>

@@ -19,7 +19,11 @@
     .text-box {
         padding-right: 8px;
     }
-    padding-bottom: 18px;
+}
+
+.pronunciations {
+    display: flex;
+    justify-content: center;
 }
 
 .text-box {
@@ -34,8 +38,12 @@
     }
 
     &--small {
-        font-size: medium;
+        font-size: large;
         color: gray;
+    }
+
+    &--centered {
+        text-align: center;
     }
 
     &.alternative {
@@ -46,4 +54,22 @@
         font-style: italic;
         padding-bottom: 8px;
     }
+    .pronunciation {
+        font-size: medium;
+        font-weight: 600;
+        display: flex;
+        flex-direction: column;
+
+        &__jp {
+            letter-spacing: 8px;
+        }
+
+        &__en {
+            letter-spacing: 8px;
+        }
+    }
+}
+
+nz-card {
+    margin-top: 18px;
 }

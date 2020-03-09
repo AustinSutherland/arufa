@@ -1,4 +1,4 @@
-import { ArfuaService } from "./../../core/arfua.service";
+import { ArufaService } from "./../../core/arfua.service";
 import { VocabItem, Review, InputMode } from "../../core/models";
 import { ArfuaTranslationService } from "../../core/translation.service";
 import { ReviewService } from "./review.service";
@@ -9,6 +9,7 @@ import {
     ChangeDetectionStrategy
 } from "@angular/core";
 import { first } from "rxjs/operators";
+import { Observable } from "rxjs";
 
 @Component({
     selector: "app-review",
@@ -17,7 +18,7 @@ import { first } from "rxjs/operators";
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReviewComponent implements OnInit, OnDestroy {
-    public activeVocabItem: VocabItem;
+    public activeVocabItem$: Observable<VocabItem>;
     public activeMode: InputMode;
     public reviews: Review[];
     public hasAnswered: boolean = false;
@@ -25,17 +26,17 @@ export class ReviewComponent implements OnInit, OnDestroy {
 
     constructor(
         public reviewService: ReviewService,
-        public arfuaService: ArfuaService,
+        public arufaService: ArufaService,
         public translationService: ArfuaTranslationService
     ) {}
 
     public ngOnInit() {
+        console.log("a");
         this.reviewService.init();
-        this.arfuaService
-            .getReviews()
+        this.arufaService.reviews$
             .pipe(first())
             .subscribe((reviews: Review[]) => {
-                this.reviews = reviews.sort(() => Math.random() - 0.5);
+                this.reviews = [...reviews.sort(() => Math.random() - 0.5)];
                 this.onNextItemRequested();
             });
     }
@@ -43,7 +44,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
     public onNextItemRequested() {
         if (this.reviews.length > 0) {
             const activeReview = this.reviews[0];
-            this.activeVocabItem = this.arfuaService.getVocabItemById(
+            this.activeVocabItem$ = this.arufaService.getVocabItemById(
                 activeReview.vocabItemId
             );
             this.activeMode = activeReview.mode;
@@ -54,7 +55,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
     public onResponse(success: boolean) {
         if (success) {
             this.reviews.splice(0, 1);
-            // TODO: Update service with this info
+            this.arufaService.updateReview();
         } else {
             // shuffle
             this.reviews = this.reviews.sort(() => Math.random() - 0.5);

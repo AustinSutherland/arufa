@@ -1,11 +1,12 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ArfuaService } from "./arfua.service";
+import { ArufaService } from "./arfua.service";
 import { ArfuaTranslationService } from "./translation.service";
+import { ArfuaApiService } from "./arufa-api.service";
 
 @NgModule({
     imports: [CommonModule],
-    providers: [ArfuaService, ArfuaTranslationService],
+    providers: [ArufaService, ArfuaTranslationService, ArfuaApiService],
     declarations: []
 })
 export class CoreModule {}

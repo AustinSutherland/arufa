@@ -16,16 +16,34 @@
     <div class="text-box text-box">{{ vocabItem.definition }}</div>
 </div>
 
-<nz-card nzType="inner" nzTitle="例文">
+<nz-card
+    nzType="inner"
+    [nzTitle]="(translationService.translations$ | async).pronunciation_label"
+>
+    <div class="pronunciations">
+        <div class="text-box text-box--small text-box--centered pronunciation">
+            <div class="pronunciation pronunciation__jp">
+                {{ vocabItem.pronunciation }}
+            </div>
+            <div class="pronunciation pronunciation__en">
+                {{ vocabItem.en_word }}
+            </div>
+        </div>
+    </div>
+</nz-card>
+
+<nz-card
+    nzType="inner"
+    [nzTitle]="
+        (translationService.translations$ | async).example_sentences_label
+    "
+>
     <div class="examples">
         <div
             *ngFor="let example of vocabItem.examples"
-            class="text-box text-box--small example"
+            class="text-box text-box--small text-box--centered example"
         >
             {{ example }}
         </div>
     </div>
-</nz-card>
-<nz-card nzType="inner" style="margin-top:16px;" nzTitle="Inner Card Title">
-    <a>Inner Card Content</a>
 </nz-card>

@@ -13,7 +13,11 @@
             [class.disabled]="!isAvailable"
             (click)="toggleInfo()"
         >
-            <span>Show Info</span>
+            <span>
+                {{
+                    (translationService.translations$ | async).item_info_label
+                }}</span
+            >
             <i
                 nz-icon
                 [nzType]="isOpened ? 'caret-up' : 'caret-down'"

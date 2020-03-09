@@ -39,6 +39,8 @@ export class ItemInfoCardComponent implements OnChanges {
 
     @Input() public isAvailable: boolean = true;
 
+    constructor(public translationService: ArfuaTranslationService) {}
+
     public isOpened: boolean = false;
 
     public ngOnChanges(changes: SimpleChanges) {

@@ -116,7 +116,7 @@ export class UserInputComponent implements OnChanges {
         item: VocabItem
     ): boolean {
         const correctValues =
-            mode === InputMode.meaning ? item.jp_words : item.pronunciations;
+            mode === InputMode.meaning ? item.jp_words : item.pronunciation;
 
         if (correctValues.indexOf(answer.replace(" ", "")) === -1) {
             this.activeInputResult = InputResult.error;

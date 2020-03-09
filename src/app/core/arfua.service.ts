@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { BehaviorSubject, Observable, of, Subscription } from "rxjs";
 import { Injectable } from "@angular/core";
 import {
     UserInfo,
@@ -7,9 +7,11 @@ import {
     InputMode,
     VocabItem
 } from "./models";
+import { ArfuaApiService } from "./arufa-api.service";
+import { distinctUntilChanged, switchMap, tap, first } from "rxjs/operators";
 
 @Injectable()
-export class ArfuaService {
+export class ArufaService {
     public loggedInUserInfo$ = new BehaviorSubject<UserInfo>({
         username: null,
         level: null,
@@ -18,89 +20,61 @@ export class ArfuaService {
         id: null
     });
 
-    // JUST FOR DEBUGGING!
-    private vocabItems: VocabItemDictionary = {
-        a: {
-            id: "a",
-            en_word: "Unbelievable",
-            jp_words: ["信じられない", "しんじられない"],
-            pronunciations: ["アンベリーバブル"],
-            definition: "信じられないこと",
-            examples: [
-                "The prices at that store were unbelievable",
-                "Don't say such unbelievable things"
-            ]
-        },
-        b: {
-            id: "b",
-            en_word: "Test",
-            jp_words: ["テスト", "試験", "しけん"],
-            pronunciations: ["テスト"],
-            definition: "これはテストワードです",
-            examples: [
-                "The test was really hard",
-                "I am making a test word for this program"
-            ]
-        },
-        c: {
-            id: "c",
-            en_word: "Mitochondria",
-            jp_words: ["ミトコンドリア"],
-            pronunciations: ["ミトコンドリア"],
-            definition: "セルの原動力です",
-            examples: ["All this talk of mitochondria is making me hungry!"]
-        }
-    };
+    public reviews$ = new BehaviorSubject<Review[]>([]);
+    public lessons$ = new BehaviorSubject<Review[]>([]);
 
-    // JUST FOR DEBUGGING!
-    private reviews$ = new BehaviorSubject<Review[]>([
-        {
-            vocabItemId: "a",
-            mode: InputMode.meaning
-        },
-        {
-            vocabItemId: "a",
-            mode: InputMode.pronunciation
-        },
-        {
-            vocabItemId: "b",
-            mode: InputMode.meaning
-        },
-        {
-            vocabItemId: "b",
-            mode: InputMode.pronunciation
-        },
-        {
-            vocabItemId: "c",
-            mode: InputMode.meaning
-        },
-        {
-            vocabItemId: "c",
-            mode: InputMode.pronunciation
-        }
-    ]);
+    private subscriptions: Subscription[] = [];
 
-    constructor() {}
+    // local cache of vocab items
+    private vocabItemDictionary = {};
+
+    constructor(private apiService: ArfuaApiService) {}
 
     public init(): void {
-        this.loggedInUserInfo$.next({
-            username: "TestUser",
-            level: 5,
-            pendingLessons: 0,
-            pendingReviews: this.reviews$.value.length,
-            id: "we213jk4j2h1hke3w"
-        });
+        this.apiService
+            .logIn()
+            .pipe(first())
+            .subscribe((userInfo: UserInfo) => {
+                this.loggedInUserInfo$.next(userInfo);
+            });
+
+        // reload reviews when login data changes, todo: add login :)
+        this.subscriptions.push(
+            this.loggedInUserInfo$
+                .pipe(
+                    distinctUntilChanged(),
+                    tap(_ => (this.vocabItemDictionary = {})),
+                    switchMap(_ => {
+                        return this.apiService.getReviews();
+                    })
+                )
+                .subscribe((reviews: Review[]) => this.reviews$.next(reviews))
+        );
     }
 
     public destroy() {
-        // is this needed yet?
+        this.subscriptions.forEach(sub => sub.unsubscribe);
     }
 
-    public getVocabItemById(id: string): VocabItem {
-        return this.vocabItems[id];
+    public getVocabItemById(id: string): Observable<VocabItem> {
+        // try cache
+        const lookup = this.vocabItemDictionary[id];
+        if (!!lookup) {
+            return of(lookup);
+        } else {
+            return this.apiService.getVocabItem(id).pipe(
+                tap(
+                    // cache result for next time
+                    (item: VocabItem) =>
+                        (this.vocabItemDictionary[item.id] = item)
+                )
+            );
+        }
     }
 
-    public getReviews(): Observable<Review[]> {
-        return this.reviews$.asObservable();
+    // this needs to take a unique ID and lower and raise the word level
+    public updateReview(): void {
+        console.log(this.reviews$.value);
+        this.reviews$.next(this.reviews$.value.slice(1));
     }
 }
