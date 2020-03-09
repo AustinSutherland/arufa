@@ -1,3 +1,10 @@
+## [0.0.5] - 9/3/2020
+
+### Added
+
+    - Add item information panel
+    - Better hook data up with main service
+
 ## [0.0.4] - 7/3/2020
 
 ### Added
